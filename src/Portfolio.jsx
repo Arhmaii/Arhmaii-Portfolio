@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { 
   Terminal, 
   ShoppingBag, 
@@ -20,6 +20,8 @@ import {
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [lang, setLang] = useState('zh'); // 'zh' or 'en'
+  const [submitted, setSubmitted] = useState(false);
+  const successRef = useRef(null);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleLang = () => setLang(lang === 'zh' ? 'en' : 'zh');
@@ -51,7 +53,7 @@ const Portfolio = () => {
         btnSecondary: '了解我的背景',
         floatingBadge: {
           title: '拒绝低效',
-          subtitle: '从 1 家店扩张到 100 家'
+          subtitle: '从 1 家店扩张到 12000+ 家'
         },
         codeBlock: {
           input: '“混乱的零售流程”',
@@ -90,7 +92,7 @@ const Portfolio = () => {
         title: '我为客户带来的真实价值',
         items: [
           { title: '降低运营成本', desc: '把繁琐的人工步骤变成可自动化的流程。' },
-          { title: '支持规模扩张', desc: '打造底层系统，支持企业从 1 家店走到 100 家店。' },
+          { title: '支持规模扩张', desc: '打造底层系统，支持企业从 1 家店走到 12000+ 家店。' },
           { title: '避免技术踩坑', desc: '减少试错成本，把系统做对一次就够。' },
           { title: '深度本地化', desc: '用符合马来西亚与中国两边思维的方式做整合。' },
           { title: '数据驱动决策', desc: '让经营层看到利润、库存、损耗的真实状况。' }
@@ -112,7 +114,9 @@ const Portfolio = () => {
           company: '公司名称',
           message: '简述您的需求...'
         },
-        options: ['零售系统咨询', '马来西亚市场落地', '技术架构规划', '其他合作']
+        options: ['零售系统咨询', '马来西亚市场落地', '技术架构规划', '其他合作'],
+        successTitle: '信息已发送',
+        successDesc: '感谢您的联系，我会尽快与您取得联系，继续讨论合作细节。'
       }
     },
     en: {
@@ -132,7 +136,7 @@ const Portfolio = () => {
         btnSecondary: 'View Bio',
         floatingBadge: {
           title: 'Let\'s Scale.',
-          subtitle: 'From 1 store to 100.'
+          subtitle: 'From 1 store to 12000+.'
         },
         codeBlock: {
           input: '“Messy Retail Operations”',
@@ -143,7 +147,7 @@ const Portfolio = () => {
         title: 'Not Just a Consultant, A Practitioner',
         desc: 'With a background in UI/UX, I\'ve evolved through roles in system consulting and business development to the core of retail tech architecture.',
         cards: [
-          { title: 'Team Leader', desc: 'Managing a tech team of ~20 in Shanghai, with extensive experience in cross-department collaboration.' },
+          { title: 'Team Leader', desc: 'Managing a tech team of ~120 in Shanghai, with extensive experience in cross-department collaboration.' },
           { title: 'Cross-Border Connector', desc: 'Pioneering the Malaysian market by adapting mature Chinese retail tech for local Southeast Asian needs.' },
           { title: 'Indie Developer', desc: 'Skilled in Laravel, automation tools, and web scraping. I can discuss strategy and debug code.' }
         ]
@@ -193,9 +197,19 @@ const Portfolio = () => {
           company: 'Company Name',
           message: 'Briefly describe your needs...'
         },
-        options: ['Retail System Consulting', 'Malaysia Market Entry', 'Tech Architecture', 'Other Collaboration']
+        options: ['Retail System Consulting', 'Malaysia Market Entry', 'Tech Architecture', 'Other Collaboration'],
+        successTitle: 'Message Sent',
+        successDesc: 'Thanks for reaching out. I will get back to you soon to discuss details.'
       }
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => {
+      successRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0);
   };
 
   const t = content[lang];
@@ -554,11 +568,11 @@ const Portfolio = () => {
                   <div className="space-y-4">
                     <div className="flex items-center gap-3 text-blue-100">
                       <Mail size={18} />
-                      <span>contact@arhmaii.com</span>
+                      <span>Business.inquiry@arhmaii.com</span>
                     </div>
                     <div className="flex items-center gap-3 text-blue-100">
                       <Linkedin size={18} />
-                      <span>linkedin.com/in/joseph</span>
+                      <span>linkedin.com/in/arhmaii</span>
                     </div>
                     <div className="flex items-center gap-3 text-blue-100">
                       <MessageSquare size={18} />
@@ -572,31 +586,68 @@ const Portfolio = () => {
               </div>
               
               <div className="p-10">
-                <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1">{t.contact.labels.name}</label>
-                    <input type="text" className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder={t.contact.placeholders.name} />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1">{t.contact.labels.company}</label>
-                    <input type="text" className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder={t.contact.placeholders.company} />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1">{t.contact.labels.type}</label>
-                    <select className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all bg-white">
-                      {t.contact.options.map((option, i) => (
-                        <option key={i}>{option}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1">{t.contact.labels.message}</label>
-                    <textarea rows={3} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder={t.contact.placeholders.message}></textarea>
-                  </div>
-                  <button className="w-full py-3 px-6 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-lg transition-all transform active:scale-95">
-                    {t.contact.labels.send}
-                  </button>
-                </form>
+                <form
+  action="https://formspree.io/f/xdkqdgza"
+  method="POST"
+  className="space-y-4"
+>
+  <div>
+    <label className="block text-sm font-medium text-slate-700 mb-1">
+      {t.contact.labels.name}
+    </label>
+    <input
+      name="name"
+      type="text"
+      className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500"
+      placeholder={t.contact.placeholders.name}
+      required
+    />
+  </div>
+
+  <div>
+    <label className="block text-sm font-medium text-slate-700 mb-1">
+      {t.contact.labels.company}
+    </label>
+    <input
+      name="company"
+      type="text"
+      className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500"
+      placeholder={t.contact.placeholders.company}
+      required
+    />
+  </div>
+
+  <div>
+    <label className="block text-sm font-medium text-slate-700 mb-1">
+      {t.contact.labels.type}
+    </label>
+    <select
+      name="type"
+      className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500"
+    >
+      {t.contact.options.map((option, i) => (
+        <option key={i}>{option}</option>
+      ))}
+    </select>
+  </div>
+
+  <div>
+    <label className="block text-sm font-medium text-slate-700 mb-1">
+      {t.contact.labels.message}
+    </label>
+    <textarea
+      name="message"
+      rows={3}
+      className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500"
+      placeholder={t.contact.placeholders.message}
+      required
+    ></textarea>
+  </div>
+
+  <button className="w-full py-3 px-6 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-lg">
+    {t.contact.labels.send}
+  </button>
+</form>
               </div>
             </div>
           </div>
