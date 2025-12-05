@@ -1,59 +1,53 @@
 import React, { useRef, useState } from 'react';
-import { 
-  Terminal, 
-  ShoppingBag, 
-  Globe, 
-  Cpu, 
-  ArrowRight, 
-  Database, 
-  Layout, 
-  Users, 
-  Code2, 
-  Menu, 
-  X,
+import {
+  Terminal,
+  ShoppingBag,
+  Globe,
+  Cpu,
+  ArrowRight,
+  Database,
+  Layout,
+  Users,
+  Code2,
   Linkedin,
   Mail,
-  MessageSquare,
-  Languages
+  MessageSquare
 } from 'lucide-react';
+import { useLanguage } from './LanguageContext';
 
 const Portfolio = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [lang, setLang] = useState('zh'); // 'zh' or 'en'
+  const { lang } = useLanguage(); // 'zh' or 'en'
   const [submitted, setSubmitted] = useState(false);
   const successRef = useRef(null);
-
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const toggleLang = () => setLang(lang === 'zh' ? 'en' : 'zh');
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-    setIsMenuOpen(false);
   };
 
   // Content Dictionary
   const content = {
     zh: {
       nav: {
-        about: '关于我',
+        about: '关于我们',
         services: '核心服务',
         advantage: '专业优势',
         value: '价值承诺',
+        cases: '客户案例',
         contact: '联系合作',
       },
       hero: {
-        tag: '零售科技顾问 & 架构师',
+        tag: '零售科技顾问团队 & 架构师',
         titlePrefix: '将混乱的运营转化为',
         titleHighlight: '可扩张的系统',
-        desc: '我帮助东南亚企业将业务混乱转化为数据驱动的高效能。从上海到马来西亚，打造真正落地的零售系统。',
+        desc: '我们帮助东南亚企业将业务混乱转化为数据驱动的高效能。从上海到马来西亚，打造真正落地的零售系统。',
         btnPrimary: '开始合作',
-        btnSecondary: '了解我的背景',
+        btnSecondary: '了解我们的背景',
         floatingBadge: {
           title: '拒绝低效',
-          subtitle: '从 1 家店扩张到 12000+ 家'
+          subtitle: '从 1 家店扩张到 6000 家'
         },
         codeBlock: {
           input: '“混乱的零售流程”',
@@ -61,17 +55,17 @@ const Portfolio = () => {
         }
       },
       about: {
-        title: '不仅是顾问，更是实战者',
-        desc: '我来自 UI/UX 背景，历经系统顾问、业务开发，深入零售科技底层。',
+        title: '不仅是顾问，更是实战团队',
+        desc: '团队来自 UI/UX、系统咨询与业务开发背景，深耕零售科技底层，能从策略到落地一体化推进。',
         cards: [
-          { title: '团队管理者', desc: '目前在上海管理约 120 人的技术团队，拥有丰富的人员管理与跨部门协作经验。' },
-          { title: '跨国连接器', desc: '开拓马来西亚市场，将中国成熟的零售系统能力整合为适合东南亚当地落地的解决方案。' },
-          { title: '独立开发者', desc: '具备 Laravel 后端开发、自动化工具及爬虫能力。既能聊战略，也能下去 Debug。' }
+          { title: '团队管理者', desc: '在上海运营约 120 人的技术团队，具备成熟的人员管理与跨部门协作经验。' },
+          { title: '跨国连接器', desc: '拓展马来西亚市场，把中国成熟的零售系统能力本地化为东南亚方案。' },
+          { title: '全栈落地力', desc: '具备 Laravel 后端、自动化工具与数据抓取能力，既能定战略，也能下去 Debug。' }
         ]
       },
       services: {
         subtitle: 'SERVICES',
-        title: '我提供的专业服务',
+        title: '我们提供的专业服务',
         items: [
           { title: '零售系统咨询', desc: 'SaaS 架构、电商整合、库存系统、POS 及 Kiosk 落地指导。' },
           { title: '跨国项目统筹', desc: '跨团队沟通、需求分析与本地化方案制定，弥合文化与技术差异。' },
@@ -80,28 +74,28 @@ const Portfolio = () => {
         ]
       },
       advantage: {
-        title: <>少数能同时讲<br/><span className="text-blue-400">“业务语言”</span> 和 <span className="text-teal-400">“工程语言”</span> 的顾问</>,
+        title: <>少数能同时讲<br/><span className="text-blue-400">“业务语言”</span> 和 <span className="text-teal-400">“工程语言”</span> 的团队</>,
         items: [
-          { title: '翻译需求', desc: '能把企业的混乱流程翻译成技术团队能执行的精准规格。' },
-          { title: '解释逻辑', desc: '也能把复杂的系统逻辑解释给老板听，辅助商业决策。' },
+          { title: '翻译需求', desc: '把企业的混乱流程翻译成技术团队能执行的精准规格。' },
+          { title: '解释逻辑', desc: '把复杂的系统逻辑解释给管理层，辅助商业决策。' },
           { title: '目标导向', desc: '不绕弯、不给废话。只关注成本、效率和可规模化。' }
         ],
-        quote: "I build retail systems the way founders think — fast, practical, and ready to scale."
+        quote: "We build retail systems the way founders think — fast, practical, and ready to scale."
       },
       value: {
-        title: '我为客户带来的真实价值',
+        title: '我们为客户带来的真实价值',
         items: [
           { title: '降低运营成本', desc: '把繁琐的人工步骤变成可自动化的流程。' },
-          { title: '支持规模扩张', desc: '打造底层系统，支持企业从 1 家店走到 12000+ 家店。' },
+          { title: '支持规模扩张', desc: '打造底层系统，支持企业从 1 家店走到 6000 家店。' },
           { title: '避免技术踩坑', desc: '减少试错成本，把系统做对一次就够。' },
           { title: '深度本地化', desc: '用符合马来西亚与中国两边思维的方式做整合。' },
           { title: '数据驱动决策', desc: '让经营层看到利润、库存、损耗的真实状况。' }
         ],
-        finalQuote: "“我的工作是让您的生意运转得比想象中更顺畅。”"
+        finalQuote: "“我们的使命是让您的业务运转得比想象中更顺畅。”"
       },
       contact: {
         title: 'Let\'s Talk Business',
-        desc: '准备好升级您的零售系统了吗？无论是技术咨询还是市场落地，欢迎直接与我联系。',
+        desc: '准备好升级您的零售系统了吗？无论是技术咨询还是市场落地，欢迎直接与我们联系。',
         labels: {
           name: '姓名',
           company: '企业/机构',
@@ -116,7 +110,7 @@ const Portfolio = () => {
         },
         options: ['零售系统咨询', '马来西亚市场落地', '技术架构规划', '其他合作'],
         successTitle: '信息已发送',
-        successDesc: '感谢您的联系，我会尽快与您取得联系，继续讨论合作细节。'
+        successDesc: '感谢您的联系，我们会尽快与您取得联系，继续讨论合作细节。'
       }
     },
     en: {
@@ -125,18 +119,19 @@ const Portfolio = () => {
         services: 'Services',
         advantage: 'Advantage',
         value: 'Value',
+        cases: 'Case Studies',
         contact: 'Contact',
       },
       hero: {
-        tag: 'Retail Tech Consultant & Architect',
+        tag: 'Retail Tech Consulting & Architecture',
         titlePrefix: 'Turn Messy Operations Into',
         titleHighlight: 'Scalable Systems',
-        desc: 'I help companies in Southeast Asia transform chaos into data-driven efficiency. From Shanghai to Malaysia, I build retail systems that actually work.',
+        desc: 'We help companies in Southeast Asia transform chaos into data-driven efficiency. From Shanghai to Malaysia, we build retail systems that actually work.',
         btnPrimary: 'Let\'s Collaborate',
-        btnSecondary: 'View Bio',
+        btnSecondary: 'View Our Story',
         floatingBadge: {
           title: 'Let\'s Scale.',
-          subtitle: 'From 1 store to 12000+.'
+          subtitle: 'From 1 store to 6000.'
         },
         codeBlock: {
           input: '“Messy Retail Operations”',
@@ -144,12 +139,12 @@ const Portfolio = () => {
         }
       },
       about: {
-        title: 'Not Just a Consultant, A Practitioner',
-        desc: 'With a background in UI/UX, I\'ve evolved through roles in system consulting and business development to the core of retail tech architecture.',
+        title: 'Not Just Consultants, Practitioners',
+        desc: 'Our team blends UI/UX, system consulting, and business development backgrounds, operating at the core of retail tech architecture.',
         cards: [
-          { title: 'Team Leader', desc: 'Managing a tech team of ~120 in Shanghai, with extensive experience in cross-department collaboration.' },
-          { title: 'Cross-Border Connector', desc: 'Pioneering the Malaysian market by adapting mature Chinese retail tech for local Southeast Asian needs.' },
-          { title: 'Indie Developer', desc: 'Skilled in Laravel, automation tools, and web scraping. I can discuss strategy and debug code.' }
+          { title: 'Team Leader', desc: 'Operating a ~120 person tech team in Shanghai with deep experience in cross-department collaboration.' },
+          { title: 'Cross-Border Connector', desc: 'Adapting mature Chinese retail tech for Southeast Asian needs while pioneering the Malaysian market.' },
+          { title: 'Full-Stack Delivery', desc: 'Skilled in Laravel, automation, and data tooling—we handle strategy and roll up our sleeves to debug.' }
         ]
       },
       services: {
@@ -163,24 +158,24 @@ const Portfolio = () => {
         ]
       },
       advantage: {
-        title: <>Rarely do you find a consultant who speaks both <br/><span className="text-blue-400">“Business”</span> and <span className="text-teal-400">“Engineering”</span>.</>,
+        title: <>Rarely do you find a team that speaks both <br/><span className="text-blue-400">“Business”</span> and <span className="text-teal-400">“Engineering”</span>.</>,
         items: [
           { title: 'Translation', desc: 'Translating messy business flows into precise specs for engineering teams.' },
           { title: 'Clarification', desc: 'Explaining complex system logic to founders to support business decisions.' },
-          { title: 'Goal Oriented', desc: 'No fluff. I focus strictly on cost, efficiency, and scalability.' }
+          { title: 'Goal Oriented', desc: 'No fluff. We focus strictly on cost, efficiency, and scalability.' }
         ],
-        quote: "I build retail systems the way founders think — fast, practical, and ready to scale."
+        quote: "We build retail systems the way founders think — fast, practical, and ready to scale."
       },
       value: {
         title: 'Real Value Delivered',
         items: [
           { title: 'Reduce OpEx', desc: 'Turning manual drudgery into automated workflows.' },
-          { title: 'Enable Scale', desc: 'Building the foundation to go from 1 store to 12000+.' },
+          { title: 'Enable Scale', desc: 'Building the foundation to go from 1 store to 6000.' },
           { title: 'Avoid Pitfalls', desc: 'Get the system right the first time and save on trial-and-error costs.' },
           { title: 'Deep Localization', desc: 'Integration that respects both Malaysian and Chinese business mindsets.' },
           { title: 'Data-Driven', desc: 'Giving management visibility into real profit, inventory, and shrinkage.' }
         ],
-        finalQuote: "“My job is to make your business run smoother than you ever thought possible.”"
+        finalQuote: "“Our job is to make your business run smoother than you ever thought possible.”"
       },
       contact: {
         title: 'Let\'s Talk Business',
@@ -199,97 +194,17 @@ const Portfolio = () => {
         },
         options: ['Retail System Consulting', 'Malaysia Market Entry', 'Tech Architecture', 'Other Collaboration'],
         successTitle: 'Message Sent',
-        successDesc: 'Thanks for reaching out. I will get back to you soon to discuss details.'
+        successDesc: 'Thanks for reaching out. We will get back to you soon to discuss details.'
       }
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      successRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 0);
-  };
+  // Removed unused handleSubmit - form submission is handled by Formspree
 
   const t = content[lang];
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-blue-600 selection:text-white">
-      
-      {/* Navigation */}
-      <nav className="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer" onClick={() => scrollToSection('hero')}>
-              <div className="w-8 h-8 bg-blue-700 rounded-lg flex items-center justify-center text-white font-bold">A</div>
-              <span className="font-bold text-xl tracking-tight text-slate-900">Arhmaii <span className="text-blue-600">Ventures</span></span>
-            </div>
-            
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-8">
-              {Object.keys(t.nav).map((key) => {
-                const idMap = { about: 'about', services: 'services', advantage: 'advantage', value: 'value', contact: 'contact' };
-                return (
-                  <button 
-                    key={key}
-                    onClick={() => scrollToSection(idMap[key])}
-                    className="text-slate-600 hover:text-blue-600 transition-colors font-medium text-sm"
-                  >
-                    {t.nav[key]}
-                  </button>
-                );
-              })}
-              
-              {/* Language Switcher */}
-              <button 
-                onClick={toggleLang}
-                className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-colors border border-slate-200"
-              >
-                <Languages size={14} />
-                <span>{lang === 'zh' ? 'EN' : '中'}</span>
-              </button>
-
-              <button onClick={() => scrollToSection('contact')} className="text-blue-600 font-semibold hover:text-blue-700 transition-colors text-sm">
-                {t.nav.contact}
-              </button>
-            </div>
-
-            {/* Mobile Menu Button & Lang Switch */}
-            <div className="md:hidden flex items-center gap-4">
-              <button 
-                onClick={toggleLang}
-                className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-bold border border-slate-200"
-              >
-                {lang === 'zh' ? 'EN' : '中'}
-              </button>
-              <button onClick={toggleMenu} className="text-slate-600 hover:text-slate-900">
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Menu Dropdown */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white border-t border-slate-100">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {Object.keys(t.nav).map((key) => {
-                 const idMap = { about: 'about', services: 'services', advantage: 'advantage', value: 'value', contact: 'contact' };
-                 return (
-                  <button
-                    key={key}
-                    onClick={() => scrollToSection(idMap[key])}
-                    className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50 w-full text-left"
-                  >
-                    {t.nav[key]}
-                  </button>
-                 );
-              })}
-            </div>
-          </div>
-        )}
-      </nav>
 
       {/* Hero Section */}
       <section id="hero" className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-900 text-white">
@@ -508,7 +423,7 @@ const Portfolio = () => {
                 <div className="w-12 h-12 rounded-full bg-slate-600 flex items-center justify-center text-xl font-bold">J</div>
                 <div>
                   <p className="font-bold text-white">Joseph</p>
-                  <p className="text-sm text-slate-400">Arhmaii Ventures</p>
+                  <p className="text-sm text-slate-400">HongYuan Software · 泓远软体</p>
                 </div>
               </div>
             </div>
@@ -581,78 +496,78 @@ const Portfolio = () => {
                   </div>
                 </div>
                 <div className="mt-12">
-                   <p className="text-sm text-blue-400 font-mono">Complex operations don't scare me; inefficiency does.</p>
+                   <p className="text-sm text-blue-400 font-mono">Complex operations don't scare us; inefficiency does.</p>
                 </div>
               </div>
               
-              <div className="p-10">
-                <form
-  action="https://formspree.io/f/xdkqdgza"
-  method="POST"
-  className="space-y-4"
->
-  <div>
-    <label className="block text-sm font-medium text-slate-700 mb-1">
-      {t.contact.labels.name}
-    </label>
-    <input
-      name="name"
-      type="text"
-      className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500"
-      placeholder={t.contact.placeholders.name}
-      required
-    />
-  </div>
+<div className="p-10">
+  <form
+    action="https://formspree.io/f/xdkqdgza"
+    method="POST"
+    className="space-y-4"
+  >
+    <div>
+      <label className="block text-sm font-medium text-slate-700 mb-1">
+        {t.contact.labels.name}
+      </label>
+      <input
+        name="name"
+        type="text"
+        className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500"
+        placeholder={t.contact.placeholders.name}
+        required
+      />
+    </div>
 
-  <div>
-    <label className="block text-sm font-medium text-slate-700 mb-1">
-      {t.contact.labels.company}
-    </label>
-    <input
-      name="company"
-      type="text"
-      className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500"
-      placeholder={t.contact.placeholders.company}
-      required
-    />
-  </div>
+    <div>
+      <label className="block text-sm font-medium text-slate-700 mb-1">
+        {t.contact.labels.company}
+      </label>
+      <input
+        name="company"
+        type="text"
+        className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500"
+        placeholder={t.contact.placeholders.company}
+        required
+      />
+    </div>
 
-  <div>
-    <label className="block text-sm font-medium text-slate-700 mb-1">
-      {t.contact.labels.type}
-    </label>
-    <select
-      name="type"
-      className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500"
-    >
-      {t.contact.options.map((option, i) => (
-        <option key={i}>{option}</option>
-      ))}
-    </select>
-  </div>
+    <div>
+      <label className="block text-sm font-medium text-slate-700 mb-1">
+        {t.contact.labels.type}
+      </label>
+      <select
+        name="type"
+        className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500"
+      >
+        {t.contact.options.map((option, i) => (
+          <option key={i}>{option}</option>
+        ))}
+      </select>
+    </div>
 
-  <div>
-    <label className="block text-sm font-medium text-slate-700 mb-1">
-      {t.contact.labels.message}
-    </label>
-    <textarea
-      name="message"
-      rows={3}
-      className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500"
-      placeholder={t.contact.placeholders.message}
-      required
-    ></textarea>
-  </div>
+    <div>
+      <label className="block text-sm font-medium text-slate-700 mb-1">
+        {t.contact.labels.message}
+      </label>
+      <textarea
+        name="message"
+        rows={3}
+        className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500"
+        placeholder={t.contact.placeholders.message}
+        required
+      ></textarea>
+    </div>
 
-  <button className="w-full py-3 px-6 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-lg">
-    {t.contact.labels.send}
-  </button>
-</form>
-              </div>
+    <button className="w-full py-3 px-6 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-lg">
+      {t.contact.labels.send}
+    </button>
+  </form>
+</div>
             </div>
           </div>
           <div className="text-center mt-12 text-slate-400 text-sm">
-            © {new Date().getFullYear()} Arhmaii Ventures. All rights reserved.
+            © {new Date().getFullYear()} HongYuan Software · 泓远软体. All rights reserved.
           </div>
         </div>
       </section>
