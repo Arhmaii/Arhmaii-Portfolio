@@ -64,7 +64,7 @@ const Portfolio = () => {
         title: '不仅是顾问，更是实战者',
         desc: '我来自 UI/UX 背景，历经系统顾问、业务开发，深入零售科技底层。',
         cards: [
-          { title: '团队管理者', desc: '目前在上海管理约 20 人的技术团队，拥有丰富的人员管理与跨部门协作经验。' },
+          { title: '团队管理者', desc: '目前在上海管理约 120 人的技术团队，拥有丰富的人员管理与跨部门协作经验。' },
           { title: '跨国连接器', desc: '开拓马来西亚市场，将中国成熟的零售系统能力整合为适合东南亚当地落地的解决方案。' },
           { title: '独立开发者', desc: '具备 Laravel 后端开发、自动化工具及爬虫能力。既能聊战略，也能下去 Debug。' }
         ]
@@ -175,7 +175,7 @@ const Portfolio = () => {
         title: 'Real Value Delivered',
         items: [
           { title: 'Reduce OpEx', desc: 'Turning manual drudgery into automated workflows.' },
-          { title: 'Enable Scale', desc: 'Building the foundation to go from 1 store to 100.' },
+          { title: 'Enable Scale', desc: 'Building the foundation to go from 1 store to 12000+.' },
           { title: 'Avoid Pitfalls', desc: 'Get the system right the first time and save on trial-and-error costs.' },
           { title: 'Deep Localization', desc: 'Integration that respects both Malaysian and Chinese business mindsets.' },
           { title: 'Data-Driven', desc: 'Giving management visibility into real profit, inventory, and shrinkage.' }
